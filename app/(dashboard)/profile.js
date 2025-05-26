@@ -1,36 +1,41 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Text } from 'react-native';
 
-import Spacer from "../../components/Spacer"
-import ThemedText from "../../components/ThemedText"
-import ThemedView from "../../components/ThemedView"
+import Spacer from '../../components/Spacer';
+import ThemedText from '../../components/ThemedText';
+import ThemedView from '../../components/ThemedView';
+import { useUser } from '../../hooks/useUser';
+import ThemedButton from '../../components/ThemedButton';
 
 const Profile = () => {
-  return (
-    <ThemedView style={styles.container}>
+	const { logout, user } = useUser();
+	return (
+		<ThemedView style={styles.container}>
+			<ThemedText title={true} style={styles.heading}>
+				{user?.email}
+			</ThemedText>
+			<Spacer />
 
-      <ThemedText title={true} style={styles.heading}>
-        Your Email
-      </ThemedText>
-      <Spacer />
+			<ThemedText>Time to start reading some books...</ThemedText>
+			<Spacer />
 
-      <ThemedText>Time to start reading some books...</ThemedText>
-      <Spacer />
+			<ThemedButton onPress={logout}>
+				<Text style={{ color: '#f2f2f2' }}>Logout</Text>
+			</ThemedButton>
+		</ThemedView>
+	);
+};
 
-    </ThemedView>
-  )
-}
-
-export default Profile
+export default Profile;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  heading: {
-    fontWeight: "bold",
-    fontSize: 18,
-    textAlign: "center",
-  },
-})
+	container: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	heading: {
+		fontWeight: 'bold',
+		fontSize: 18,
+		textAlign: 'center',
+	},
+});

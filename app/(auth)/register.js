@@ -8,6 +8,7 @@ import { Colors } from '../../constants/Colors';
 import ThemedButton from '../../components/ThemedButton';
 import ThemedTextInput from '../../components/ThemedTextInput';
 import { useUser } from '../../hooks/useUser';
+import { useRouter } from 'expo-router';
 //themed components
 
 const Register = () => {
@@ -16,6 +17,7 @@ const Register = () => {
 	const [error, setError] = useState(null);
 
 	const { user, register } = useUser();
+	const router = useRouter();
 
 	const handleSubmit = async () => {
 		setError(null);
@@ -63,9 +65,7 @@ const Register = () => {
 				<Spacer height={30} />
 				<ThemedText>
 					Already have an account?{' '}
-					<Link href='/login'>
-						<ThemedText style={{ textAlign: 'center', color: Colors.primary, fontWeight: 'bold' }}>Login</ThemedText>
-					</Link>
+					<ThemedText style={{ textAlign: 'center', color: Colors.primary, fontWeight: 'bold' }} onPress={() => router.replace('/login')}>Login</ThemedText>
 				</ThemedText>
 			</ThemedView>
 		</TouchableWithoutFeedback>
